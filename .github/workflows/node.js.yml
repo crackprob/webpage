@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,14 +21,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-   
+    uses: actions/setup-node@v2
+    with:
+      node-version: ${{ matrix.node-version }}
+
     - name: Installing my packages
       run: npm ci
 
-    - name: Build my App  
+    - name: Build my App
       run: npm run build
       env:
         NEXT_PUBLIC_BASE_PATH: /webpage
@@ -37,7 +36,7 @@ jobs:
       env:
         NEXT_PUBLIC_BASE_PATH: /webpage
     - run: touch ./out/.nojekyll
-    
+
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.5.9
       with:
