@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -19,28 +18,27 @@ jobs:
         node-version: [14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-      
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Installing my packages
-      run: npm ci
+      - name: Installing my packages
+        run: npm ci
 
-    - name: Build my App  
-      run: npm run build
-      env:
-        NEXT_PUBLIC_BASE_PATH: /webpage
-    - run: npm run export
-      env:
-        NEXT_PUBLIC_BASE_PATH: /webpage
-    - run: touch ./out/.nojekyll
-    
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@3.5.9
-      with:
-        GITHUB_TOKEN:  echo "::`echo -n ${{ github.token }} | sha256sum | head -c 64`::"        
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: out # The folder the action should deploy.
+      - name: Build my App
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /webpage
+      - run: npm run export
+        env:
+          NEXT_PUBLIC_BASE_PATH: /webpage
+      - run: touch ./out/.nojekyll
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.5.9
+        with:
+          ACCESS_TOKEN: ${{ secrets.GH_DOCS }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: out # The folder the action should deploy.
