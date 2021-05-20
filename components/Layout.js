@@ -9,7 +9,9 @@ function Layout({ children }) {
         <meta name="description" content="Crackprob's official page" />
       </Head>
       <main className={`${styles.main} ${styles.flex}`}>
-        <h1>Welcome to crackprob</h1>
+        <h1>
+          Welcome to <span>crackprob</span>
+        </h1>
         <h4>Our website is still under construction</h4>
       </main>
     </div>
