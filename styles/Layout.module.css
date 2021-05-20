@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
   height: 100vh;
-  color: #570000;
+  color: var(--primary-color);
 }
 
 .flex {
@@ -18,12 +18,12 @@
 
 .container span {
   font-size: 50px;
-  background: rgb(218, 42, 13);
+  background: var(--logo-color-primary);
   background: linear-gradient(
     235deg,
-    rgba(218, 42, 13, 1) 0%,
-    rgba(198, 13, 0, 1) 35%,
-    rgba(218, 42, 13, 1) 100%
+    var(--logo-color-primary) 0%,
+    var(--logo-color-secondary) 35%,
+    var(--logo-color-primary) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;

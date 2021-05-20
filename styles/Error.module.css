@@ -13,5 +13,5 @@
 }
 
 .container a {
-  color: blue;
+  color: var(--a-link-color);
 }
