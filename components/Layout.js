@@ -13,7 +13,6 @@ function Layout({ children }) {
           Welcome to <span>crackprob</span>
         </h1>
         <h4>Our website is still under construction</h4>
-        <h3>Please visit after some time</h3>
       </main>
     </div>
   );
